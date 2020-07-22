@@ -22,18 +22,25 @@ const login = async(req, res, next) => {
             return next(createError(422, '비밀번호를 확인하십시오'))
         }
 
-        const payload = {message: 'access granted'}
+        const payload = {
+            email: user.email,
+            uuid: user.uuid
+        }
 
-        const secret = 'secret'
-
-        const ttl = 360000
-
-        const token = jwt.sign(payload, secret, {
-            expiresIn: ttl
+        const token = jwt.sign(payload, process.env.JWT_SECRET,{
+            expiresIn: process.env.JWT_EXPIRESIN
         })
 
         return response(res, {token})
     }catch(e){
+        next(e)
+    }
+}
+
+export const tokenTest = async(req, res, next)=>{
+    try{
+        return response(res, req.user)
+    }catch (e) {
         next(e)
     }
 }

@@ -17,7 +17,7 @@ export default {
 
     findByEmail: async(email) => await models.User.findOne({
         where:{
-            email,
+            email
         }
     })
 }
