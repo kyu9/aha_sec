@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.47% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/19</span>
+                <span class='fraction'>20/24</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.47% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/19</span>
+                <span class='fraction'>20/24</span>
             </div>
         
             
@@ -104,7 +104,29 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -117,12 +139,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -140,9 +165,28 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -156,23 +200,26 @@
 import createError from 'http-errors'
 import express from 'express'
 import cookieParser from 'cookie-parser'
-import logger from 'morgan'
 import response from './utils/response'
+import moment from 'moment'
 import v1Route from './routes/v1'
 import jwtMiddleware from './middlewares/jwt.middleware'
 import morgan from 'morgan'
-import {stream} from './configs/winston'
+import {logger, stream} from './configs/winston'
 &nbsp;
 const app = express();
+const sentry = require('@sentry/node')
+sentry.init({dsn: process.env.SENTRY_DSN})
 &nbsp;
-app.use(logger('dev'));
+app.use(morgan('combined', {stream}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(morgan('combined', {stream}))
 app.use(jwtMiddleware)
 &nbsp;
 app.use('/v1', v1Route)
+&nbsp;
+app.use(sentry.Handlers.errorHandler())
 &nbsp;
 // catch 404 and forward to error handler
 app.use(<span class="fstat-no" title="function not covered" >fu</span>nction(req, res, next) {
@@ -187,9 +234,28 @@ app.use((err, req, res, next) =&gt; {
 <span class="cstat-no" title="statement not covered" >    apiError = createError(err)</span>
   }
 &nbsp;
-  // set locals, only providing error in development
-  res.locals.message = apiError.message
-  res.locals.error = process.env.NODE_ENV === 'development' ? <span class="branch-0 cbranch-no" title="branch not covered" >apiError </span>: {}
+  <span class="missing-if-branch" title="else path not taken" >E</span>if(process.env.NODE_ENV === 'test'){
+    const errObj = {
+      req:{
+        headers: req.headers,
+        query: req.query,
+        body: req.body,
+        route: req.route
+      },
+      error: {
+        message: apiError.message,
+        stack: apiError.stack,
+        status: apiError.status
+      },
+      user: req.user
+    }
+    logger.error(`${moment().format('YYYY-MM-DD HH:mm:ss')}`, errObj)
+  }else{
+<span class="cstat-no" title="statement not covered" >    res.locals.message = apiError.message</span>
+<span class="cstat-no" title="statement not covered" >    res.locals.error = apiError</span>
+  }
+&nbsp;
+&nbsp;
 &nbsp;
   // render the error page
   return response(res, {
@@ -205,7 +271,7 @@ module.exports = app</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Jul 23 2020 16:25:05 GMT+0900 (Korean Standard Time)
+                at Thu Jul 23 2020 21:44:40 GMT+0900 (Korean Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

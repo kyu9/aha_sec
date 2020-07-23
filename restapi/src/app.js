@@ -24,6 +24,14 @@ app.use('/v1', v1Route)
 
 app.use(sentry.Handlers.errorHandler())
 
+app.get('/',function(req, res, next){
+  res.send('Run!')
+})
+
+app.get('/users', function(req, res, next){
+  res.send('user page')
+})
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
