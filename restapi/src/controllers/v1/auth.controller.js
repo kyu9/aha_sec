@@ -2,14 +2,14 @@ import httpStatus from "http-status";
 import createError from 'http-errors'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import userRepo from '../../repositories/user.repository'
+import UserRepo from '../../repositories/user.repository'
 import response from '../../utils/response'
 
 const login = async(req, res, next) => {
     try{
         const email = req.body.email
         const password = req.body.password
-
+        const userRepo = new UserRepo()
         const user = await userRepo.findByEmail(email)
 
         if(!user){
@@ -37,7 +37,7 @@ const login = async(req, res, next) => {
     }
 }
 
-export const tokenTest = async(req, res, next)=>{
+const tokenTest = async(req, res, next)=>{
     try{
         return response(res, req.user)
     }catch (e) {
@@ -46,5 +46,5 @@ export const tokenTest = async(req, res, next)=>{
 }
 
 export{
-    login
+    login, tokenTest
 }

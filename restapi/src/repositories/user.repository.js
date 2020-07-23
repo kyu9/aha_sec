@@ -1,23 +1,59 @@
 import models from "../models"
+import UserCache from "../caches/user.cache"
+import UserWrapper from "../wrappers/user.wrapper";
 
-export default {
-    store: async (data) => await models.User.create(data),
+class UserRepository{
+    constructor() {
+        this.userCache = new UserCache()
+    }
 
-    all: async () => await models.User.findAll(),
+    async store(data){
+        const user = await models.User.create(data)
+        await this.userCache.store(user)
+        return UserWrapper.create(user)
+    }
 
-    find: async (uuid) => {
-        return await models.User.findOne({
-            where:{
-                uuid: Buffer(uuid, 'hex')
-            }
-        })
-    },
+    async all(){
+        const users = await models.User.findAll()
+        return users.map(user => UserWrapper.create(user))
+    }
 
-    findById: async(id) => await models.User.findByPk(id),
+    async find(uuid){
+        let user = await this.userCache.find(uuid)
 
-    findByEmail: async(email) => await models.User.findOne({
-        where:{
-            email
+        if(!user){
+            user = await models.User.findOne({
+                where:{
+                    uuid: Buffer(uuid, 'hex')
+                }
+            })
         }
-    })
+        return UserWrapper.create(user)
+    }
+
+    async findById(id){
+        let user = await this.userCache.findById(id)
+
+        if(!user){
+            user = await models.User.findByPk(id)
+        }
+
+        return UserWrapper.create(user)
+    }
+
+    async findByEmail(email){
+        let user = await this.userCache.findByEmail(email)
+
+        if(!user){
+            user = await models.User.findOne({
+                where:{
+                    email,
+                }
+            })
+        }
+
+        return UserWrapper.create(user)
+    }
 }
+
+export default UserRepository

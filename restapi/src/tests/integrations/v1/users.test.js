@@ -1,5 +1,6 @@
 import request from 'supertest'
 import randomString from 'random-string'
+import UserRepo from '../../../repositories/user.repository'
 import{
     uuid
 } from "../../../utils/uuid";
@@ -7,15 +8,19 @@ import models from '../../../models'
 
 const app = require('../../../app')
 
+let userRepo
 let user
 
 beforeAll(async () => {
-    await models.User.create({
+
+    userRepo = new UserRepo()
+
+    await userRepo.store({
         email: randomString() + '@test.com',
         password: randomString()
     })
 
-    user = await models.User.create({
+    user = await userRepo.store({
         email: randomString()+'@test.com',
         password: randomString()
     })

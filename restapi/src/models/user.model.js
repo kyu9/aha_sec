@@ -44,17 +44,8 @@ module.exports = (sequelize, DataTypes) => {
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(user.password, salt);
         }
-    });
+    })
 
-    // print
-    User.prototype.toWeb = function() {
-        const values = Object.assign({}, this.get())
-
-        delete values.id
-        delete values.password
-
-        return values
-    }
 
     return User
 }

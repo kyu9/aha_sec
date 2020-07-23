@@ -1,9 +1,10 @@
 import httpStatus from 'http-status'
 import createError from 'http-errors'
-import userRepo from '../../repositories/user.repository'
+import UserRepo from '../../repositories/user.repository'
 
 const get = async (req, res, next) => {
     try {
+        const userRepo = new UserRepo()
         if (req.params.uuid) {
             const user = await userRepo.find(req.params.uuid)
 
@@ -13,11 +14,11 @@ const get = async (req, res, next) => {
 
             return res
                 .status(httpStatus.OK)
-                .json(user)
+                .json(user.toWeb())
         } else {
             const users = await userRepo.all()
 
-            return res.json(users)
+            return res.json(users.map(user=>user.toWeb()))
         }
     } catch (e) {
         next(e)
