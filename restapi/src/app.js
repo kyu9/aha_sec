@@ -14,6 +14,15 @@ const app = express();
 const sentry = require('@sentry/node')
 sentry.init({dsn: process.env.SENTRY_DSN})
 
+app.set('view engine', 'jade')
+app.set('views', './views')
+
+
+app.get('/template', function(req, res){
+  res.render('temp');
+})
+
+
 app.use(morgan('combined', {stream}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -23,16 +32,6 @@ app.use(jwtMiddleware)
 app.use('/v1', v1Route)
 
 app.use(sentry.Handlers.errorHandler())
-
-/*
-app.get('/',function(req, res, next){
-  res.send('Run!')
-})
-
-app.get('/users', function(req, res, next){
-  res.send('user page')
-})
-*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
