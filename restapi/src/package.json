@@ -27,7 +27,7 @@
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.4",
     "random-string": "^0.2.0",
-    "redis": "^3.0.2",
+    "redis": "^3.1.1",
     "sequelize": "^6.3.3",
     "uuid4": "^2.0.2",
     "winston": "^3.3.3"
